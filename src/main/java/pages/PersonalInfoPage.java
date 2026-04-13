@@ -16,6 +16,7 @@ public class PersonalInfoPage {
     private By  addressField = By.cssSelector("[placeholder='* Адрес: куда привезти заказ']");
     private By lastNameField = By.cssSelector("[placeholder='* Фамилия']");
     private By firstNameField = By.cssSelector("[placeholder='* Имя']");
+    String metroStationChoice = "//div[contains(text(), '%s')]";
 
     public PersonalInfoPage(WebDriver driver) {
         this.driver = driver;
@@ -29,23 +30,23 @@ public class PersonalInfoPage {
         driver.findElement(phoneNumberField).sendKeys(phoneNumber);
     }
 
-    public void setMetroStation(String metroStation) { // находим кнопку станция метро, кликаем
-       driver.findElement(By.cssSelector(metroStationField)).click();
+    public void setMetroStation(String metroStation) {
+        driver.findElement(By.cssSelector(metroStationField)).click();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         wait.until(ExpectedConditions.visibilityOfElementLocated(metroStationList));
-        driver.findElement(By.xpath(String.format("//div[contains(text(), '%s')]", metroStation))).click();// как здесь вынести локатор в переменную?
+        driver.findElement(By.xpath(String.format(metroStationChoice, metroStation))).click();
     }
 
     public void setAddress(String address) {
-               driver.findElement(addressField).sendKeys(address); // находим поле адрес, заполняем
+               driver.findElement(addressField).sendKeys(address);
     }
 
     public void setLastName(String lastName) {
-        driver.findElement(lastNameField).sendKeys(lastName); // находим поле фамилия заполняем
+        driver.findElement(lastNameField).sendKeys(lastName);
     }
 
     public void setFirstName(String firstName) {
-        driver.findElement(firstNameField).sendKeys(firstName); // находим поле имя, заполняем
+        driver.findElement(firstNameField).sendKeys(firstName);
     }
 
 

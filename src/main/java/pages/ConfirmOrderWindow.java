@@ -14,5 +14,4 @@ public class ConfirmOrderWindow {
     public void clickButtonYes() {
                driver.findElement(buttonYes).click();
     }
-
 }

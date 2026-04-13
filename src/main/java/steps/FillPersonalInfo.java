@@ -11,18 +11,14 @@ public class FillPersonalInfo {
         this.driver = driver;
         this.personalInfoPage = new PersonalInfoPage(driver);
     }
-public void setPersonalInfo(String firstName, String lastName, String address, String metroStation, String phoneNumber){
 
-    personalInfoPage.setFirstName(firstName);
-    //            находим поле фамилия заполняем
-    personalInfoPage.setLastName(lastName);
-    //            находим поле адрес, заполняем
-    personalInfoPage.setAddress(address);
-//            находим кнопку станция метро, кликаем
-    personalInfoPage.setMetroStation(metroStation);
-    //            находим кнопку телефон, заполняем
-    personalInfoPage.setPhoneNumber(phoneNumber);
-    //             находим кнопку далее, кликаем
-    personalInfoPage.clickButtonNext();
+    public void setPersonalInfo(String firstName, String lastName, String address, String metroStation, String phoneNumber){
+
+   personalInfoPage.setFirstName(firstName);
+   personalInfoPage.setLastName(lastName);
+   personalInfoPage.setAddress(address);
+   personalInfoPage.setMetroStation(metroStation);
+   personalInfoPage.setPhoneNumber(phoneNumber);
+   personalInfoPage.clickButtonNext();
 }
 }

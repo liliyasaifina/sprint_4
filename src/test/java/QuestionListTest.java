@@ -1,10 +1,12 @@
 
-import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
 import java.util.List;
 import static org.junit.Assert.assertTrue;
 
@@ -34,19 +36,19 @@ public class QuestionListTest extends BaseTest{
                 {7, "Я жизу за МКАДом, привезёте?", "Да, обязательно. Всем самокатов! И Москве, и Московской области."}
         };
     }
-
     @Test
     public void questionCheck() {
-
        mainPage.clickButtonCookie();
-
-
-        List<WebElement> questions = driver.findElements(By.cssSelector(".accordion__button"));
-        List<WebElement> answers = driver.findElements(By.cssSelector("[id^='accordion__panel-'] > p"));
+        String questionLocator = ".accordion__button";
+        String answerLocator = "[id^='accordion__panel-'] > p";
+        List<WebElement> questions = driver.findElements(By.cssSelector(questionLocator));
+        List<WebElement> answers = driver.findElements(By.cssSelector(answerLocator));
         questions.get(index).click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         String questionText = questions.get(index).getText();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(answerLocator)));
         String answerText = answers.get(index).getText();
-        assertTrue("Вопрос или ответ не соответствуют ожидаемым",  questionText.equals(expectedQuestion) &&
+                assertTrue("Вопрос или ответ не соответствуют ожидаемым",  questionText.equals(expectedQuestion) &&
                 answerText.equals(expectedAnswer));
     }
 }

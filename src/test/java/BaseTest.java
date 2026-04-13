@@ -39,8 +39,7 @@ public class BaseTest {
         rentalInfoPage = new RentalInfoPage(driver);
         confirmOrderWindow = new ConfirmOrderWindow(driver);
         statusWindow = new StatusWindow(driver);
-        setFormFirst = new FillPersonalInfo(driver);
-    }
+            }
 
     public void startBrowserFireFox() {
         driver = new FirefoxDriver();
@@ -52,10 +51,8 @@ public class BaseTest {
         statusWindow = new StatusWindow(driver);
     }
 
-
-
         @After
         public void tearDown () {
-            driver.quit(); //закрываем браузер
+            driver.quit();
         }
     }

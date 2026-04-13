@@ -2,8 +2,9 @@
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-
-
+import steps.FillPersonalInfo;
+import steps.FillRentalInfo;
+import static org.junit.Assert.assertTrue;
 
 
 @RunWith(Parameterized.class)
@@ -33,50 +34,15 @@ public class OrderButtonFirstTest extends BaseTest {
             }
     @Test
     public void ButtonFirstTest() {
-
-
-//    находим кнопку заказать и кликаем
         mainPage.clickButtonFirst();
-       
-           // страница - для кого самокат
-                    //находим поле имя, заполняем
-            personalInfoPage.setFirstName(firstName);
-            //            находим поле фамилия заполняем
-            personalInfoPage.setLastName(lastName);
-            //            находим поле адрес, заполняем
-            personalInfoPage.setAddress(address);
-//            находим кнопку станция метро, кликаем
-            personalInfoPage.setMetroStation(metroStation);
-            //            находим кнопку телефон, заполняем
-            personalInfoPage.setPhoneNumber(phoneNumber);
-            //             находим кнопку далее, кликаем
-            personalInfoPage.clickButtonNext();
-
-            //страница про аренду
-
-        //    находим поле дата, кликаем
-        rentalInfoPage.clickDateField();
-        //    в выпадающем календаре выбираем дату
-        rentalInfoPage.setDate();
-//    находим поле срок аренды, кликаем
-        rentalInfoPage.clickRentalPeriodField();
-//        в выпадающем списке выбираем срок
-        rentalInfoPage.setRentalPeriod();
-        //    находим чек-бокс в поле цвет, кликаем
-        rentalInfoPage.setColour();
-        //            находим поле комментарий, вводим текст
-        rentalInfoPage.setComments("Доставка до 13.00");
-        //находим кнопку заказать, кликаем
-        rentalInfoPage.clickButtonOrder();
-        //появляется окно хотите оформить заказ
-// находим кнопку да, кликаем
+        FillPersonalInfo fillPersonalInfo = new FillPersonalInfo(driver);
+        fillPersonalInfo.setPersonalInfo(firstName, lastName, address, metroStation, phoneNumber);
+        FillRentalInfo fillRentalInfo = new FillRentalInfo(driver);
+        fillRentalInfo.setRentalInfo();
         confirmOrderWindow.clickButtonYes();
-
-//окно заказ оформлен
         statusWindow.isStatusWindowDisplayed();
+        assertTrue("Фактический результат не соответствует ожидаемому", statusWindow.isStatusWindowDisplayed());
     }
-
-
 }
 
 

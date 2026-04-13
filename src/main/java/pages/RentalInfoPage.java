@@ -20,29 +20,22 @@ public class RentalInfoPage {
     public void clickButtonOrder() {
         driver.findElement(buttonOrder).click();
     }
-
     public void setComments(String comment) {
         driver.findElement(commentsField).sendKeys(comment);
     }
-
     public void setColour() {
         driver.findElement(colour).click();
     }
-
     public void setRentalPeriod() {
         driver.findElement(periodFieldChoice).click();
     }
-
     public void clickRentalPeriodField() {
         driver.findElement(periodField).click();
     }
-
     public void setDate() {
         driver.findElement(dateFieldChoice).click();
     }
-
     public void clickDateField() {
         driver.findElement(dateField).click();
     }
-
 }
