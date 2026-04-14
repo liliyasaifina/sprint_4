@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import pages.*;
-import steps.FillPersonalInfo;
 
 public class BaseTest {
 
@@ -16,7 +15,6 @@ public class BaseTest {
     RentalInfoPage rentalInfoPage;
     ConfirmOrderWindow confirmOrderWindow;
     StatusWindow statusWindow;
-    FillPersonalInfo setFormFirst;
 
     @Before
     public void startBrowser(){

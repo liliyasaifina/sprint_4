@@ -2,8 +2,8 @@
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import steps.FillPersonalInfo;
-import steps.FillRentalInfo;
+import steps.FillForm;
+
 import static org.junit.Assert.assertTrue;
 
 
@@ -25,7 +25,7 @@ public class OrderButtonFirstTest extends BaseTest {
         this.metroStation = metroStation;
         this.phoneNumber = phoneNumber;
             }
-            @Parameterized.Parameters
+            @Parameterized.Parameters (name = "Тестовые данные: {0} {1}")
             public static Object[][] setForm(){
         return new Object[][]{
                 {"Петр", "Иванов", "Дорожная 2-1", "Черкизовская", "+76568905423"},
@@ -35,10 +35,10 @@ public class OrderButtonFirstTest extends BaseTest {
     @Test
     public void ButtonFirstTest() {
         mainPage.clickButtonFirst();
-        FillPersonalInfo fillPersonalInfo = new FillPersonalInfo(driver);
-        fillPersonalInfo.setPersonalInfo(firstName, lastName, address, metroStation, phoneNumber);
-        FillRentalInfo fillRentalInfo = new FillRentalInfo(driver);
-        fillRentalInfo.setRentalInfo();
+        FillForm fillForm = new FillForm(driver);
+        fillForm.setPersonalInfo(firstName, lastName, address, metroStation, phoneNumber);
+        fillForm.setRentalInfo();
+
         confirmOrderWindow.clickButtonYes();
         statusWindow.isStatusWindowDisplayed();
         assertTrue("Фактический результат не соответствует ожидаемому", statusWindow.isStatusWindowDisplayed());

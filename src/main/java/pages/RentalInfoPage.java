@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 public class RentalInfoPage {
     WebDriver driver;
-    By buttonOrder = By.xpath("/html[1]/body[1]/div[1]/div[1]/div[2]/div[3]/button[2]");
+    By buttonOrder = By.cssSelector("button[class='Button_Button__ra12g Button_Middle__1CSJM']");
     private By commentsField = By.cssSelector("input[placeholder='Комментарий для курьера']");
     By colour = By.id("black");
     private By periodFieldChoice = By.xpath("//div[@role='option'][contains(text(),'сутки')]");

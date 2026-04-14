@@ -2,12 +2,8 @@
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import java.time.Duration;
-import java.util.List;
+import pages.MainPage;
+
 import static org.junit.Assert.assertTrue;
 
 @RunWith(Parameterized.class)
@@ -37,20 +33,15 @@ public class QuestionListTest extends BaseTest{
         };
     }
     @Test
-    public void questionCheck() {
+    public void questionCheckTest() {
        mainPage.clickButtonCookie();
-        String questionLocator = ".accordion__button";
-        String answerLocator = "[id^='accordion__panel-'] > p";
-        List<WebElement> questions = driver.findElements(By.cssSelector(questionLocator));
-        List<WebElement> answers = driver.findElements(By.cssSelector(answerLocator));
-        questions.get(index).click();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-        String questionText = questions.get(index).getText();
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(answerLocator)));
-        String answerText = answers.get(index).getText();
+        MainPage mainPage = new MainPage(driver);
+        mainPage.clickQuestion(index);
+        String questionText = mainPage.getQuestionText(index);
+        String answerText = mainPage.getAnswerText(index);
                 assertTrue("Вопрос или ответ не соответствуют ожидаемым",  questionText.equals(expectedQuestion) &&
                 answerText.equals(expectedAnswer));
     }
-}
+    }
 
 
